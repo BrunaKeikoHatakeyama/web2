@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -15,10 +11,40 @@ and open the template in the editor.
     <body>
         <div>TODO write content</div>
         
-        <form>
+        <form method="POST" action="cliente">
             <div class="form-group">
                 <label id="labelNome" for="nome">Nome:</label>
                 <input class="form-control" type="text" id="nome" name="nome" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="cpf">Cpf:</label>
+                <input class="form-control" type="text" id="cpf" name="cpf" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input class="form-control" type="text" id="dataNascimento" name="dataNascimento" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input class="form-control" type="text" id="email" name="email" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input class="form-control" type="text" id="telefone" name="telefone" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="genero">Genero:</label>
+                <input class="form-control" type="text" id="genero" name="genero" required/>
+            </div>
+            
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input class="form-control" type="text" id="endereco" name="endereco" required/>
             </div>
             
             <button id="salvar" class="btn btn-primary" type="submit">Salvar</button>
