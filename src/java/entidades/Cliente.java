@@ -1,19 +1,26 @@
 
 package entidades;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "cliente")
+@SequenceGenerator(name = "seq_cliente", sequenceName = "cliente_id_seq", allocationSize = 1)
 public class Cliente {
-    
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(generator = "seq_cliente", strategy = GenerationType.SEQUENCE)
     private int id;
     private String nome;
-    private String cpf;
-    private Date dataNascimento;
-    private String email;
     private String telefone;
-    private String genero;
-    private String endereco;
-
+    private String cpf;
+    
     public int getId() {
         return id;
     }
@@ -38,22 +45,6 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -61,23 +52,4 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-    
-    
-    
 }
