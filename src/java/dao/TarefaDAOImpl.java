@@ -8,12 +8,14 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class TarefaDAOImpl implements TarefaDAO {
-    private EntityManagerFactory fat = Persistence.createEntityManagerFactory("jarewebPU");
-
-    public void save(Tarefa tarefa){
-        EntityManager em = fat.createEntityManager();        
+    
+    private EntityManagerFactory fac
+            = Persistence.createEntityManagerFactory("jarewebPU");
+    
+    public void save(Tarefa tarefa) {
+        EntityManager em = fac.createEntityManager();
         em.getTransaction().begin();
-        if (tarefa.getId() > 0){
+        if (tarefa.getId() > 0) {
             em.merge(tarefa);
         } else {
             em.persist(tarefa);
@@ -22,26 +24,27 @@ public class TarefaDAOImpl implements TarefaDAO {
         em.close();
     }
     
-    public List<Tarefa> list(){
-        EntityManager em = fat.createEntityManager();
-        Query q = em.createQuery("SELECT t FROM tarefa as T ORDER BY t.id");
-        return q.getResultList();
-    }
-    
     public void delete(Tarefa tarefa){
-        EntityManager em = fat.createEntityManager();        
+        EntityManager em = fac.createEntityManager();
         em.getTransaction().begin();
         
-        if (!em.contains(tarefa)){
+        if(!em.contains(tarefa)){
             tarefa = em.merge(tarefa);
         }
-        em.remove(tarefa);        
+        em.remove(tarefa);
         em.getTransaction().commit();
         em.close();
     }
     
     public Tarefa find(int id){
-        EntityManager em = fat.createEntityManager();
+        EntityManager em = fac.createEntityManager();
         return em.find(Tarefa.class, id);
+    }
+    
+    public List<Tarefa> list(){
+        EntityManager em = fac.createEntityManager();
+        Query q = em.createQuery("SELECT t FROM "
+                + "Tarefa as t ORDER BY t.id");
+        return q.getResultList();
     }
 }

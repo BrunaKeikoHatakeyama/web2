@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="resources/js/jquery.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css"/>
+        <script src="resources/js/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css" />
     </head>
     <body>
         <div>TODO write content</div>
@@ -14,55 +18,41 @@
         <form method="POST" action="cliente">
             <div class="form-group">
                 <label id="labelNome" for="nome">Nome:</label>
-                <input class="form-control" type="text" id="nome" name="nome" required/>
+                <input class="form-control" type="text" id="nome" name="nome" required />
             </div>
             
             <div class="form-group">
-                <label for="cpf">Cpf:</label>
-                <input class="form-control" type="text" id="cpf" name="cpf" required/>
+                <label for="cpf">CPF</label>
+                <input class="form-control" type="text" id="cpf" name="cpf" required />
             </div>
             
             <div class="form-group">
-                <label for="dataNascimento">Data de Nascimento:</label>
-                <input class="form-control" type="text" id="dataNascimento" name="dataNascimento" required/>
+                <label for="dataNasc">Data de Nascimento</label>
+                <input class="form-control" type="text" id="dataNasc" name="dataNasc" required />
             </div>
             
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input class="form-control" type="text" id="email" name="email" required/>
+                <label for="email">E-mail</label>
+                <input class="form-control" type="text" id="email" name="email" required />
             </div>
             
             <div class="form-group">
-                <label for="telefone">Telefone:</label>
-                <input class="form-control" type="text" id="telefone" name="telefone" required/>
+                <label for="telefone">Telefone</label>
+                <input class="form-control" type="text" id="telefone" name="telefone" required />
             </div>
             
             <div class="form-group">
-                <label for="genero">Genero:</label>
-                <input class="form-control" type="text" id="genero" name="genero" required/>
+                <label for="genero">Gênero</label>
+                <input class="form-control" type="text" id="genero" name="genero" />
             </div>
             
             <div class="form-group">
-                <label for="endereco">Endereço:</label>
-                <input class="form-control" type="text" id="endereco" name="endereco" required/>
+                <label for="endereco">Endereço</label>
+                <textarea class="form-control" name="endereco"></textarea>
             </div>
             
             <button id="salvar" class="btn btn-primary" type="submit">Salvar</button>
         </form>
-        <script>
-            
-            $(document).ready(
-                    function(){
-                        $('#labelNome').on('click',
-                        function(){
-                            $(this).css('background-color','#00FF00');
-                            $('#nome').val('teste');
-                            $('#salvar').hide(500).show(500);
-                        }
-                        );
-                    }
-            );
-        </script>
         
     </body>
 </html>

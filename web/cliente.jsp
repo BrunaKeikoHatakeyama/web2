@@ -1,14 +1,13 @@
 <%@page import="java.util.List"%>
 <%@page import="entidades.Cliente"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
     <head>
-        <title>Cliente</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
         <script src="resources/js/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css" />
     </head>
     <body>
         <h1>Cliente</h1>
@@ -18,10 +17,10 @@
             String nome = "";
             String telefone = "";
             String cpf = "";
-            
-            if (request.getAttribute("cliente") != null){
-                Cliente ed = (Cliente)request.getAttribute("cliente");
-                 
+            if(request.getAttribute("cliente") != null){
+                Cliente ed = (Cliente) request
+                        .getAttribute("cliente");
+                
                 id = ed.getId();
                 nome = ed.getNome();
                 telefone = ed.getTelefone();
@@ -31,45 +30,35 @@
 
         <div class="container">
             <form method="POST" action="cliente">
+                <input type="hidden" name="id" value="<%= id %>"/>
                 <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input class="form-control" type="hidden" id="nome" name="nome" required
-                           value="<%= id %>"/>
-                </div>
-                
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input class="form-control" type="text" id="nome" name="nome" required
-                           value="<%= nome %>"/>
+                    <label id="labelNome" for="nome">Nome:</label>
+                    <input class="form-control" type="text" id="nome" name="nome" required value="<%= nome %>" />
                 </div>
 
                 <div class="form-group">
-                    <label for="cpf">CPF:</label>
-                    <input class="form-control" type="text" id="cpf" name="cpf" required
-                           value="<%= cpf %>"/>
+                    <label for="cpf">CPF</label>
+                    <input class="form-control" type="text" id="cpf" name="cpf" required value="<%= cpf %>"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="telefone">Telefone:</label>
-                    <input class="form-control" type="text" id="telefone" name="telefone" required
-                           value="<%= telefone %>"/>
+                    <label for="telefone">Telefone</label>
+                    <input class="form-control" type="text" id="telefone" name="telefone" required value="<%= telefone %>"/>
                 </div>
 
                 <button id="salvar" class="btn btn-success" type="submit">Salvar</button>
-            </form>    
+            </form>
         </div>
 
         <div class="container">
             <table class="table">
-                <thead class="thead-dark">
+                <thead class='thead-dark'>
                     <tr>
                         <th scope="col">Nome</th>
                         <th scope="col">CPF</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col"></th>
+                        <th scope="col">Ações</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <%
                         List<Cliente> lista;
@@ -79,7 +68,6 @@
                     <tr>
                         <td><%= c.getNome()%></td>
                         <td><%= c.getCpf()%></td>
-                        <td><%= c.getTelefone()%></td>
                         <td>
                             <a href="cliente?editar=<%= c.getId() %>">
                                 <button class="btn btn-primary">Editar</button>
@@ -89,10 +77,9 @@
                             </a>
                         </td>
                     </tr>
-                    <%}%>
-
+                    <% }%>
                 </tbody>
-            <table>
+            </table>
         </div>
     </body>
 </html>

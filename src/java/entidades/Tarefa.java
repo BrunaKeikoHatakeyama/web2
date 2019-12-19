@@ -13,16 +13,20 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tarefa")
-@SequenceGenerator(name = "seq_tarefa", sequenceName = "tarefa_id_seq", allocationSize = 1) 
+@SequenceGenerator(name="seq_tarefa",
+        sequenceName="tarefa_id_seq",allocationSize=1)
 public class Tarefa {
+    
     @Id
-    @GeneratedValue(generator = "seq_tarefa", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator="seq_tarefa",
+            strategy = GenerationType.SEQUENCE)
     private int id;
-    @Column(name = "descricao")
+    @Column(name="descricao")
     private String descricao;
     private boolean finalizado;
+    
     @Temporal(TemporalType.DATE)
-    @Column(name = "data_finalizado")
+    @Column(name="data_finalizado")
     private Calendar dataFinalizado;
 
     public int getId() {
@@ -56,4 +60,7 @@ public class Tarefa {
     public void setDataFinalizado(Calendar dataFinalizado) {
         this.dataFinalizado = dataFinalizado;
     }
+    
+    
+    
 }

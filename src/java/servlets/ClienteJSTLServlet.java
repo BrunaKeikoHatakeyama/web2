@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ClienteServlet", urlPatterns = {"/cliente"})
-public class ClienteServlet extends HttpServlet {
+@WebServlet(name = "ClienteJSTLServlet", urlPatterns = {"/clientejstl"})
+public class ClienteJSTLServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -22,8 +22,10 @@ public class ClienteServlet extends HttpServlet {
         ClienteDAO dao = new ClienteDAOImpl();
 
         if (request.getParameter("nome") != null) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            c.setId(id);
+            if (!request.getParameter("id").equals("")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                c.setId(id);
+            }
             c.setNome(request.getParameter("nome"));
             c.setCpf(request.getParameter("cpf"));
             c.setTelefone(request.getParameter("telefone"));
@@ -46,7 +48,7 @@ public class ClienteServlet extends HttpServlet {
         request.setAttribute("lista", dao.list());
 
         RequestDispatcher view = request
-                .getRequestDispatcher("cliente.jsp");
+                .getRequestDispatcher("clientejstl.jsp");
         view.forward(request, response);
 
     }

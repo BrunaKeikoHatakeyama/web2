@@ -1,9 +1,11 @@
 package servlets;
 
+import cdi.Auditavel;
+import cdi.DAOQualifier;
 import dao.ClienteDAO;
-import dao.ClienteDAOImpl;
 import entidades.Cliente;
 import java.io.IOException;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,23 +13,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ClienteServlet", urlPatterns = {"/cliente"})
-public class ClienteServlet extends HttpServlet {
+@WebServlet(name = "ClienteCDIServlet", urlPatterns = {"/clientecdi"})
+public class ClienteCDIServlet extends HttpServlet {
 
+    @Inject
+    private Cliente cliente;
+    
+    @Inject @DAOQualifier
+    private ClienteDAO dao;
+
+    @Auditavel
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Cliente c = new Cliente();
-        ClienteDAO dao = new ClienteDAOImpl();
-
         if (request.getParameter("nome") != null) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            c.setId(id);
-            c.setNome(request.getParameter("nome"));
-            c.setCpf(request.getParameter("cpf"));
-            c.setTelefone(request.getParameter("telefone"));
-            dao.save(c);
+            if (!request.getParameter("id").equals("")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                cliente.setId(id);
+            }
+            cliente.setNome(request.getParameter("nome"));
+            cliente.setCpf(request.getParameter("cpf"));
+            cliente.setTelefone(request.getParameter("telefone"));
+            dao.save(cliente);
         } else if (request.getParameter("excluir") != null) {
 
             int id = Integer
@@ -39,14 +47,14 @@ public class ClienteServlet extends HttpServlet {
             int id = Integer
                     .parseInt(request
                             .getParameter("editar"));
-            c = dao.find(id);
-            request.setAttribute("cliente", c);
+            cliente = dao.find(id);
+            request.setAttribute("cliente", cliente);
         }
 
         request.setAttribute("lista", dao.list());
 
         RequestDispatcher view = request
-                .getRequestDispatcher("cliente.jsp");
+                .getRequestDispatcher("clientecdi.jsp");
         view.forward(request, response);
 
     }

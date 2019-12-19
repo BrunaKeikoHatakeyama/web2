@@ -1,6 +1,6 @@
-
 package entidades;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,16 +11,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-@SequenceGenerator(name = "seq_cliente", sequenceName = "cliente_id_seq", allocationSize = 1)
-public class Cliente {
+@SequenceGenerator(name="seq_cliente",
+        sequenceName="cliente_id_seq",allocationSize=1)
+public class Cliente implements Serializable {
+    
     @Id
-    @Column(name = "id")
-    @GeneratedValue(generator = "seq_cliente", strategy = GenerationType.SEQUENCE)
+    @Column(name="id")
+    @GeneratedValue(generator="seq_cliente",
+            strategy = GenerationType.SEQUENCE)
     private int id;
     private String nome;
-    private String telefone;
     private String cpf;
-    
+    private String telefone;
+
     public int getId() {
         return id;
     }
@@ -52,4 +55,7 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
+    
+    
 }
